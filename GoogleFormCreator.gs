@@ -53,7 +53,7 @@ function createGoogleForm(formName,sheetName,email=Session.getActiveUser().getEm
   Logger.log("Sharing notifications sent"); 
 }
 /*
-Example:
+Example Usage:
 
 // Creates a Google Form named 'Form1', a Google sheet named 'Sheet1', and sends a sharing notification email to myemail@gmail.com
 createGoogleForm("Form1","Sheet1","myemail@gmail.com");
