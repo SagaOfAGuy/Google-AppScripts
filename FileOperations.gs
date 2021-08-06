@@ -14,6 +14,14 @@
  * limitations under the License.
  */
 
+/** 
+ * SERVICES
+ * --------
+ *  - Drive API V2
+ *  
+ * 
+*/
+
 // Method that creates file in Google Drive. Needs Drive services to be enabled to work
 function createFile(filename,data, mimetype) {
   if(data == undefined) {
@@ -28,6 +36,17 @@ function createFile(filename,data, mimetype) {
   Drive.Files.insert(fileInfo, blob);
   Logger.log("File has been created"); 
 }
+/*
+Example Usage:
+// Create variable with data inside
+var myData = "This is a test!"
+
+// Create a file name 'test.txt' with the data of 'myData' variable with a mimetype of 'text'
+var fileCreator = createFile("test.txt",myData,"text/plain");
+*/  
+
+
+
 
 // Method that gets fileID by file name 
 function getFileId(name) { 
@@ -41,3 +60,32 @@ function getFileId(name) {
     }    
   }
 }
+/*
+Example Usage:
+// Store file ID of hypothetical file named 'Budget Sheet' into sheetID variable
+const sheetId = getFileId("Budget Sheet");
+
+// Print out ID onto Google Apps Script Logger
+Logger.log(sheetId);
+*/
+
+
+// Remove file from Google Drive
+function removeFile(filename) {
+   const fileId = getFileId(filename);
+   try {
+      Drive.Files.remove(fileId); 
+      Logger.log("File deletion successful");
+     return;
+   } catch(e) {
+      Logger.log("Could not delete file"); 
+      Logger.log(e);
+      return;
+   } 
+}
+/*
+Example Usage: 
+// Remove files named 'f1' and 's1' within Google Drive
+removeFile("s1");
+removeFile("f1");
+*/
